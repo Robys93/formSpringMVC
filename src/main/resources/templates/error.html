@@ -6,7 +6,7 @@
 <body>
 <h1>Errore di validazione</h1>
 <p th:text="${error}">Messaggio di errore</p>
-<p>Input invalido: <span th:text="${input}"></span></p>
+<p th:if="${input} and !${input.isEmpty()}">Input invalido: <span th:text="${input}"></span></p>
 <a href="/form">Torna al form</a>
 </body>
 </html>
