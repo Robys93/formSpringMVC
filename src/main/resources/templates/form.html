@@ -1,32 +1,37 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Registrazione utente</title>
-    </head>
-    <body>
-        <h1>Form Utente</h1>
-        <form action="/submitForm" method="post">
-            <label for="nome">Nome:</label>
-            <input type="text" id="nome" name="nome" required>
-            <br><br>
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required>
-            <br><br>
-            <label for="numeroTelefono">Numero di Telefono:</label>
-            <input type="tel" id="numeroTelefono" name="numeroTelefono" required
-                   pattern="[+]?[0-9]{10,15}"
-                   title="Inserisci un numero di telefono valido (10-15 cifre, con o senza +)">
-            <br><br>
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required>
-            <br><br>
-            <label for="conferma password">Conferma password:</label>
-            <input type="conferma password" id="conferma password" name="conferma password" required>
-            <br><br>
-            <label for="data di nascita">Data di nascita:</label>
-            <input type="data di nascita" id="data di nascita" name="data di nascita" required>
-            <br><br>
-            <button type="submit">Submit</button>
-        </form>
-    </body>
+<head>
+    <title>Registrazione utente</title>
+    <meta charset="UTF-8">
+</head>
+<body>
+<h1>Form Utente</h1>
+<form action="/submitForm" method="post">
+    <label for="nome">Nome:</label>
+    <input type="text" id="nome" name="nome" required minlength="3" maxlength="20">
+    <br><br>
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required>
+    <br><br>
+
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" required>
+    <br><br>
+
+    <label for="confermaPassword">Conferma Password:</label>
+    <input type="password" id="confermaPassword" name="confermaPassword" required>
+    <br><br>
+
+    <label for="dataDiNascita">Data di Nascita:</label>
+    <input type="date" id="dataDiNascita" name="dataDiNascita" required>
+    <br><br>
+
+    <label for="numeroTelefono">Numero di Telefono:</label>
+    <input type="tel" id="numeroTelefono" name="numeroTelefono" required>
+    <br><br>
+
+    <button type="submit">Submit</button>
+</form>
+</body>
 </html>
