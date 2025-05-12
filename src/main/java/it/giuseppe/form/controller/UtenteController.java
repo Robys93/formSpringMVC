@@ -7,19 +7,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import java.util.Date;
 import java.util.List;
 
 @Controller
 public class UtenteController {
 
-    String[] nomiBannati = {" admin", "root" };
-
     @GetMapping("/form")
     public String getForm() {
         return "form";
     }
-
 
     @GetMapping("/form2")
     public String getForm2(@ModelAttribute Utente utente) {
@@ -54,16 +50,14 @@ public class UtenteController {
         }
 
         // 6. Validazione data
-        if (utente.getDataDiNascita() == null || utente.getDataDiNascita().after(new Date())) {
+        if (utente.getDataDiNascita() == null || utente.getDataDiNascita().isEmpty()) {
             return errore(model, "Data di nascita non valida", "");
         }
-
 
         model.addAttribute("utente", utente);
         return "result";
     }
 
-    // Metodi helper
     private boolean isNomeBannato(String nome) {
         List<String> nomiBannatiList = List.of("admin", "root");
         return nomiBannatiList.contains(nome.toLowerCase());
@@ -80,8 +74,24 @@ public class UtenteController {
     }
 
     private boolean isTelefonoValido(String telefono) {
-        // Implementazione come sopra
-        return false;
+        if (telefono == null || telefono.isEmpty()) return false;
+
+        int digitCount = 0;
+        char primoCarattere = telefono.charAt(0);
+
+        if (primoCarattere != '+' && !Character.isDigit(primoCarattere)) {
+            return false;
+        }
+
+        for (char c : telefono.toCharArray()) {
+            if (Character.isDigit(c)) {
+                digitCount++;
+            } else if (c != '+' && c != ' ' && c != '-' && c != '(' && c != ')') {
+                return false;
+            }
+        }
+
+        return digitCount >= 9 && digitCount <= 15;
     }
 
     private String errore(Model model, String messaggio, String input) {
